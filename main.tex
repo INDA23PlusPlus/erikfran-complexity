@@ -1,0 +1,67 @@
+\documentclass{article}
+
+\usepackage{polynom}
+\usepackage{amsmath}
+\usepackage{tkz-tab}
+\usepackage{xpatch}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{amssymb}
+    \usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \rhead{Erik Frankling}
+
+\title{Komplexitet och Korrekhet}
+\author{Erik Frankling}
+\begin{document}
+
+\section{Induktion}
+\subsection{Uppgift 1}
+Bevisa med induktion att 
+\[ \sum_{i=1}^{n} i ^ 2 = \frac{n (n + 1) (2n + 1)}{6} \] 
+för alla $n \ge 1$ där $n \in \mathbb{Z}$\\
+
+
+\textit{Basfall:} $n = 1$
+\[ P(1) VL = \sum_{i=1}^{1} i ^ 2  = 1 ^ 2 = \frac{6}{6} = \frac{1 (1 + 1) (2 * 1 + 1)}{6} = HL \]
+
+\textit{Induktionsantagande:} Antag att $P(k)$ är sann vilket ger att 
+\[ \sum_{i=1}^{k} i ^ 2 = \frac{k (k + 1) (2k + 1)}{6} \]
+
+\textit{Induktionssteget:}
+Vi ska visa att givet induktionsantagandet är $P(k + 1)$ sant.
+\[ VL = \sum_{i=1}^{k + 1} i ^ 2 = (k + 1) ^ 2 + \sum_{i=1}^{k} i ^ 2 \]
+Nu stoppar vi in det vi kom fram till i induktionsantagandet och får
+\[ VL = (k + 1) ^ 2 + \frac{k (k + 1) (2k + 1)}{6} = \]
+\[ = \frac{ 6 (k ^ 2 + 2k + 1) + 2k ^ 3 + 3k ^ 2 + k}{6} = \]
+\[ = \frac{ 2k ^ 3 + 9k ^ 2 + 13k + 6 }{6}\]
+\[ HL = \frac{(k + 1) (k + 2) (2 (k + 1) + 1)}{6} = \]
+\[ = \frac{(k ^ 2 + 3k + 2) (2k + 3)}{6} = \]
+\[ = \frac{2k ^ 3 + 9k ^ 2 + 13k + 6}{6} = VL \]
+Påståendet följer enligt induktionsprincipen.
+
+\subsection{Uppgift 2}
+Bevisa med induktion att 
+\[ \sum_{j=1}^{n} (2j - 1) = n ^ 2 \]
+för alla $n \ge 1$ där $n \in \mathbb{Z}$\\
+
+
+\textit{Basfall:} $n = 1$
+\[ P(1) VL = \sum_{j=1}^{1} (2j - 1)  = 2 * 1 - 1 = 1 = 1 ^ 2 = HL \]
+
+\textit{Induktionsantagande:} Antag att $P(k)$ är sann vilket ger att 
+\[ \sum_{j=1}^{k} (2j - 1) = k ^ 2 \]
+
+\textit{Induktionssteget:}
+Vi ska visa att givet induktionsantagandet är $P(k + 1)$ sant.
+\[ VL = \sum_{j=1}^{1} (2j - 1) = 2 (k + 1) - 1 + \sum_{i=1}^{k} (2j - 1) \]
+Nu stoppar vi in det vi kom fram till i induktionsantagandet och får
+\[ VL = 2 (k + 1) - 1 + k ^ 2 = \]
+\[ = k ^ 2 + 2k + 1 = \]
+\[ = (k + 1) ^ 2 = HL \]
+Påståendet följer enligt induktionsprincipen.
+\section{Iterativ korrekhet}
+
+\section{Rekursiv korrekhet}
+
+\end{document}
