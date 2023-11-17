@@ -11,6 +11,12 @@
     \pagestyle{fancy}
     \rhead{Erik Frankling}
 
+\usepackage{mathtools}
+
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
 \title{Komplexitet och Korrekhet}
 \author{Erik Frankling}
 \begin{document}
@@ -62,6 +68,42 @@ Nu stoppar vi in det vi kom fram till i induktionsantagandet och får
 Påståendet följer enligt induktionsprincipen.
 \section{Iterativ korrekhet}
 
-\section{Rekursiv korrekhet}
+Innan loopen har vi att $res_0 = 1.0 = x^0$
 
+I slutet av iteration $i$ har vi att $res_{i + 1} = x * res_i = $ {induktionssteg} $ = res_i = x ^ i$
+
+Den sista iterationen är $i = n - 1$ då vi startar från i = 0 vilket ger att $res_{n - 1 + 1} = res_n = x ^ {n}$
+
+Vi har då visat att $f(x, n) = x ^ n$.
+
+Antalet iterationer är n vilket ger att tidskomplexiteten är $O(n)$.
+
+\section{Rekursiv korrekhet}
+\begin{equation*}
+expRecursive(x, n) = f(x, n) = 
+  \begin{cases}
+    g(x ,n) \quad \text{då } 0 \le n \le 4\\
+    f(x, \floor*{\frac{n}{2}}) \cdot \floor*{\frac{n + 1}{2}}) \quad \text{då } 0 \le n \le 4\\
+  \end{cases}
+\end{equation*}
+\[ expIterative(x, n) = g(x, n) = x ^ n \]
+där $n \in \mathbb{Z}$
+Påstående $P(n)$:
+\[ P(n) \Longleftrightarrow expRecursive(x, n) = x ^ n \]
+\textit{Basfall:}
+\[ f(x, n) = g(x, n) = x ^ n \longleftarrow P(n), 0 \le n \le 4 \]
+\textit{Induktionssteg:} Antag $P(n)$ för alla $ 4 < n < m$
+
+Då m är på formen $m = 2k$
+\[ g(x, m) = g(x, k) \cdot g(x, k) = \text{induktionsantagande} = x ^ k \cdot x ^ k = x ^ {2k} = x ^ m \]
+
+Då m är på formen $m = 2k + 1$
+\[ g(x, m) = g(x, k) \cdot g(x, k + 1) = \text{induktionsantagande} = x ^ k \cdot x ^ {k + 1} = x ^ {2k + 1} = x ^ m \]
+
+Påståendet $P(n)$ följer då enligt starka induktionsprincipen för alla $n > 0$ där $n \in \mathbb{Z}$
+
+Rekursiv tidskomplexitet ges av formeln
+\[ T(n) = aT(n/b) + f(n) \]
+där $a = 2, b = 2$ och $f(n) \in \theta(1)$ mästarsatsen ger då
+\[ T(n) \in \Theta(n ^ {log_22}) = \Theta(n) \]
 \end{document}
